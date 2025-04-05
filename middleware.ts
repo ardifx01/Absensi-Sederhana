@@ -1,0 +1,47 @@
+import { betterFetch } from "@better-fetch/fetch";
+import { NextResponse, type NextRequest } from "next/server";
+import type { Session } from "@/auth";
+
+const authRoutes = ["/login", "/register",];
+const adminRoute = ["/dashboard", "/dashboard/administrator", "/dashboard/data_absensi", "/dashboard/data_absensi/input_kehadiran", "/dashboard/data_siswa", "/dashboard/data_siswa/tambah_siswa", "/dashboard/pengguna", "/dashboard/pengguna/tambah_pengguna"]
+
+export default async function authMiddleware(request: NextRequest) {
+    const pathName = request.nextUrl.pathname;
+    const isAuthRoute = authRoutes.includes(pathName);
+    const isAdminRoute = adminRoute.includes(pathName);
+
+    const { data: session } = await betterFetch<Session>(
+        "/api/auth/get-session",
+        {
+            baseURL: process.env.BETTER_AUTH_URL,
+            headers: {
+                cookie: request.headers.get("cookie") || "",
+            },
+        },
+    );
+
+    if (!session) {
+        if (isAdminRoute) {
+            return NextResponse.redirect(new URL("/", request.url));
+        }
+        if (isAuthRoute) {
+            return NextResponse.next();
+        }
+    }
+
+    if (isAuthRoute) {
+        return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    if (session) {
+        if (isAdminRoute && session.user.role !== "admin") {
+            return NextResponse.redirect(new URL("/", request.url));
+        }
+    }
+
+    return NextResponse.next();
+}
+
+export const config = {
+    matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+};
