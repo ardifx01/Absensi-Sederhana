@@ -62,7 +62,7 @@ enum GenderEnum {
 
 model Siswa {
   id_siswa  Int        @id @default(autoincrement())
-  Nis       Int
+  nis       Int
   nama      String
   kelasId   Int
   gender    GenderEnum
