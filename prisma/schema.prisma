@@ -92,7 +92,7 @@ model Kehadiran {
   tanggal      DateTime      @default(now())
   kehadiran    KehadiranEnum @default(hadir)
   siswaId      Int           @unique
-  Siswa        Siswa         @relation(fields: [siswaId], references: [id_siswa])
+  Siswa        Siswa         @relation(fields: [siswaId], references: [id_siswa], onDelete: Cascade)
 
   created_at DateTime @default(now())
 }
