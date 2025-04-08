@@ -16,7 +16,7 @@ import {
 
 import { MoreHorizontal } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-const TableSkeleton = () => {
+const TableSkeletonv2 = () => {
   return (
     <>
       {Array.from({ length: 5 }).map((_, index) => (
@@ -33,17 +33,8 @@ const TableSkeleton = () => {
           <TableCell>
             <Skeleton className="w-[130px] h-[20px]" />
           </TableCell>
-          <TableCell className="flex items-center space-x-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger className="focus:outline-none">
-                <MoreHorizontal />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>u</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>d</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <TableCell>
+            <Skeleton className="w-[130px] h-[20px]" />
           </TableCell>
         </TableRow>
       ))}
@@ -51,4 +42,4 @@ const TableSkeleton = () => {
   );
 };
 
-export default TableSkeleton;
+export default TableSkeletonv2;
