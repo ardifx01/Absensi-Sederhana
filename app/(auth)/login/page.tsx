@@ -1,5 +1,3 @@
-"use client"
-
 import { GalleryVerticalEnd } from "lucide-react";
 import Login from "./login-form";
 import Image from "next/image";
@@ -33,6 +31,8 @@ export default function LoginPage() {
         <Image
           src="/vestiazetaponytailready.webp"
           alt="Image"
+          width={500}
+          height={500}
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />
       </div>
