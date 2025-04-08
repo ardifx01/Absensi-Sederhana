@@ -1,0 +1,41 @@
+import { getSiswaPages } from "@/actions/siswa";
+import PageContainer from "@/components/dashboard/page-container";
+import TableSearch from "@/components/table/table-search";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import SiswaTable from "./components/table-siswa";
+import TablePagination from "@/components/table/table-pagination";
+import { getKelass } from "@/actions/kelas";
+import TableKelasFilter from "@/components/table/table-kelas-filter";
+
+const SiswaPage = async ({
+    searchParams
+}: {
+    searchParams?: Promise<{query?: string; page?: string; nama_kelas?: undefined;}>;
+}) => {
+    const query = (await searchParams)?.query || "";
+    const nama_kelas = (await searchParams)?.nama_kelas || undefined;
+    const currentPage = Number((await searchParams)?.page) || 1;
+
+    const totalPages = await getSiswaPages(query, nama_kelas);
+    const {data} = await getKelass()
+    
+  return (
+    <PageContainer scrollable>
+      <div className="flex items-start justify-between gap-6 mb-6">
+        <TableSearch />
+        <TableKelasFilter dataKelas={data} nama_kelas={nama_kelas}/>
+        <Link href="/dashboard/data_siswa/tambah" className={cn(buttonVariants({ variant: "default" }))}>
+          Tambah
+        </Link>
+      </div>
+      <div key={query + currentPage}>
+        <SiswaTable query={query} currentPage={currentPage} nama_kelas={nama_kelas} />
+      </div>
+      <TablePagination totalPages={totalPages} />
+    </PageContainer>
+  );
+};
+
+export default SiswaPage;
