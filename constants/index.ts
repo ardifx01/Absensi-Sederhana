@@ -1,27 +1,4 @@
 import { Icons } from '@/constants/icon';
-import { LucideIcon, PersonStanding, NotepadText } from 'lucide-react'
-
-export type onboardingitemProps = {
-    icon: LucideIcon;
-    title: string;
-    description: string;
-    linkHref: string;
-}
-
-export const onboardingitem: onboardingitemProps[] = [
-    {
-        icon: PersonStanding,
-        title: "Warga",
-        description: "Buat profile Warga Anda.",
-        linkHref: "/profile/warga/new"
-    },
-    {
-        icon: NotepadText,
-        title: "Registrasi",
-        description: "Buat profile Registrasi Anda.",
-        linkHref: "/profile/register/new"
-    }
-]
 
 export interface NavItem {
     title: string;
@@ -57,9 +34,16 @@ export const navItems: NavItem[] = [
         items: []
     },
     {
-        title: 'Administrator',
-        url: '/dashboard/administrator',
+        title: 'Data Absensi',
+        url: '/dashboard/data_absensi',
         icon: 'dashboard',
+        isActive: false,
+        items: []
+    },
+    {
+        title: 'Data Siswa',
+        url: '/dashboard/data_siswa',
+        icon: 'userround',
         isActive: false,
         items: []
     },
