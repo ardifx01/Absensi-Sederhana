@@ -82,7 +82,7 @@ model Kelas {
 
 enum KehadiranEnum {
   hadir
-  terlamat
+  terlambat
   sakit
   izin
   alpha
