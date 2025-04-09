@@ -48,7 +48,7 @@ export default function Login() {
         },
         onSuccess: async () => {
           router.push("/");
-          toast("Berhasil masuk", {
+          toast.success("Berhasil masuk", {
             description: "Anda akan dipindahkan ke halaman utama",
           });
         },

@@ -32,13 +32,9 @@ import {
 } from "@/components/ui/sidebar";
 import { navItems } from "@/constants/index";
 import {
-  BadgeCheck,
-  Bell,
   ChevronRight,
   ChevronsUpDown,
-  CreditCard,
   GalleryVerticalEnd,
-  LogOut,
   User,
 } from "lucide-react";
 import Link from "next/link";
@@ -47,7 +43,7 @@ import * as React from "react";
 import { Icons } from "@/constants/icon";
 
 import { authClient } from "@/auth-client";
-import { Button } from "../ui/button";
+import LogoutButton from "../logout-button";
 
 export const company = {
   name: "Hadirin",
@@ -196,25 +192,7 @@ export default function AppSidebar() {
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <LogOut />
-                    <form
-                      action={async () => {
-                        await authClient.signOut({
-                          fetchOptions: {
-                            onSuccess: () => {
-                              router.push("/login");
-                              router.refresh();
-                            },
-                          },
-                        });
-                      }}
-                    >
-                      <Button variant="text" size="text" type="submit">
-                        Keluar
-                      </Button>
-                    </form>
-                  </DropdownMenuItem>
+                  <LogoutButton />
                 </DropdownMenuContent>
               </DropdownMenu>
             </SidebarMenuItem>
