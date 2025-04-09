@@ -48,7 +48,9 @@ export function useSiswaTable(query: string, currentPage: number, nama_kelas: un
         select: (response) => ({
             siswas: response.data,
             error: response.error
-        })
+        }),
+        staleTime: Infinity,
+        refetchOnWindowFocus: false
     });
 
     return {
