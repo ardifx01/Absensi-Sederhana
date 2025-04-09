@@ -29,7 +29,7 @@ const AbsensiTable = ({
   currentPage: number;
   nama_kelas: undefined;
 }) => {
-  const { siswas, isLoading, isFetching, error } = useSiswaTable(
+  const { siswas, isLoading, isFetching, error, updateAbsensi } = useSiswaTable(
     query,
     currentPage,
     nama_kelas
@@ -45,7 +45,7 @@ const AbsensiTable = ({
       | undefined;
   }>({});
 
-  const { updateAbsensi } = useKehadirans();
+  // const { updateAbsensi } = useKehadirans();
 
   async function handleUpdate(
     id_siswas: number,
