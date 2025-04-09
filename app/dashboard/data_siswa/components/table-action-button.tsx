@@ -10,7 +10,7 @@ export const EditButton = ({ id_siswa }: { id_siswa: number }) => {
   return (
     <DropdownMenuItem asChild>
       <Link
-        href={`/dashboard/siswa/ubah/${id_siswa}`}
+        href={`/dashboard/data_siswa/ubah/${id_siswa}`}
         className="flex items-center gap-2"
       >
         <Pencil size={10} color="#10b981" /> Ubah
