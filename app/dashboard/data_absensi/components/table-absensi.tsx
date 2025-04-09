@@ -10,16 +10,15 @@ import {
 } from "@/components/ui/table";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { LoaderCircleIcon, MoreHorizontal, Pencil } from "lucide-react";
+import { LoaderCircleIcon } from "lucide-react";
 
 
 import { useSiswaTable } from "@/hooks/useSiswa";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useKehadirans } from "@/hooks/useKehadiran";
-import { KehadiranEnum } from "@prisma/client";
-import { useRouter } from "next/navigation";
 import TableSkeletonv2 from "@/components/table/table-skeleton-v2";
+import { useState } from "react";
 
 const AbsensiTable = ({
   query,
@@ -36,12 +35,27 @@ const AbsensiTable = ({
     nama_kelas
   );
 
+  const [localKehadiran, setLocalKehadiran] = useState<{
+    [key: number]:
+      | "hadir"
+      | "terlambat"
+      | "sakit"
+      | "izin"
+      | "alpha"
+      | undefined;
+  }>({});
+
   const { updateAbsensi } = useKehadirans();
 
   async function handleUpdate(
     id_siswas: number,
     value: "hadir" | "terlambat" | "sakit" | "izin" | "alpha"
   ) {
+    setLocalKehadiran((prev) => ({
+      ...prev,
+      [id_siswas]: value,
+    }));
+
     updateAbsensi({ id_siswa: id_siswas, kehadiranValue: value });
   }
 
@@ -83,7 +97,10 @@ const AbsensiTable = ({
                       <TableCell>{item.kelas.nama_kelas}</TableCell>
                       <TableCell className="w-[100px]">
                         <RadioGroup
-                          value={item.kehadiran?.kehadiran}
+                          value={
+                            localKehadiran[item.id_siswa] ||
+                            item.kehadiran?.kehadiran
+                          }
                           onValueChange={(value) =>
                             handleUpdate(
                               item.id_siswa,
