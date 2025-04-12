@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import type { Session } from "@/auth";
 
 const authRoutes = ["/login", "/register",];
-const adminRoute = ["/dashboard", "/dashboard/administrator", "/dashboard/data_absensi", "/dashboard/data_absensi/input_kehadiran", "/dashboard/data_siswa", "/dashboard/data_siswa/tambah_siswa", "/dashboard/pengguna", "/dashboard/pengguna/tambah_pengguna"]
+const adminRoute = ["/dashboard", "/dashboard/data_administrator", "/dashboard/data_absensi", "/dashboard/data_siswa", "/dashboard/data_siswa/tambah", "/dashboard/data_siswa/ubah"];
 
 export default async function authMiddleware(request: NextRequest) {
     const pathName = request.nextUrl.pathname;
@@ -21,16 +21,13 @@ export default async function authMiddleware(request: NextRequest) {
     );
 
     if (!session) {
-        if (isAdminRoute) {
-            return NextResponse.redirect(new URL("/", request.url));
-        }
         if (isAuthRoute) {
             return NextResponse.next();
+        } else if (isAdminRoute) {
+            return NextResponse.redirect(new URL("/", request.url));
+        } else {
+            return NextResponse.next();
         }
-    }
-
-    if (isAuthRoute) {
-        return NextResponse.redirect(new URL("/", request.url));
     }
 
     if (session) {

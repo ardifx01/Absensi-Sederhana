@@ -47,7 +47,7 @@ export default function Login() {
           setPendingCredentials(true);
         },
         onSuccess: async () => {
-          router.push("/");
+          router.push("/dashboard/data_administrator");
           toast.success("Berhasil masuk", {
             description: "Anda akan dipindahkan ke halaman utama",
           });
