@@ -1,12 +1,5 @@
-import { Kehadiran, KehadiranEnum } from "@prisma/client";
-
-interface KehadiranProps {
-    kehadiran: KehadiranEnum;
-    id_kehadiran: number;
-    tanggal: Date;
-    siswaId: number;
-    created_at: Date;
-}
+import { Kehadiran } from "@prisma/client";
+import { KehadiranProps } from "../model-type/kehadiran";
 
 export type QueriesResponse = {
     data: KehadiranProps[];
