@@ -8,7 +8,7 @@ const DataTotalAbsenKehadiran = () => {
   const { isFetchingAdministrator, isLoadingAdministrator, totalAbsen } =
     useAdministrator();
   return (
-    <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+    <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4 mb-7">
       <Card x-chunk="dashboard-01-chunk-0">
         <CardHeader className="flex flex-row items-center justify-between space-y-0">
           <CardTitle className="text-sm font-medium">
@@ -17,7 +17,9 @@ const DataTotalAbsenKehadiran = () => {
           <Users color="#4ade80" className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent className="space-y-1.5">
-          <div className="text-2xl font-bold">{totalAbsen?.totalHadir}</div>
+          <div className="text-2xl font-bold text-[#4ade80]">
+            {totalAbsen?.totalHadir}
+          </div>
           <p className="text-xs text-muted-foreground">
             Anak hebat datang tepat waktu
           </p>
@@ -31,7 +33,9 @@ const DataTotalAbsenKehadiran = () => {
           <Users color="#facc15" className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent className="space-y-1.5">
-          <div className="text-2xl font-bold">{totalAbsen?.totalTerlambat}</div>
+          <div className="text-2xl font-bold text-[#facc15]">
+            {totalAbsen?.totalTerlambat}
+          </div>
           <p className="text-xs text-muted-foreground">
             Lain kali jangan terlambat lagi ya
           </p>
@@ -45,7 +49,9 @@ const DataTotalAbsenKehadiran = () => {
           <Users color="#818cf8" className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent className="space-y-1.5">
-          <div className="text-2xl font-bold">{totalAbsen?.totalSakit}</div>
+          <div className="text-2xl font-bold text-[#818cf8]">
+            {totalAbsen?.totalSakit}
+          </div>
           <p className="text-xs text-muted-foreground">
             Lekas sembuh ya anak-anak
           </p>
@@ -59,7 +65,9 @@ const DataTotalAbsenKehadiran = () => {
           <Users className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent className="space-y-1.5">
-          <div className="text-2xl font-bold">{totalAbsen?.totalIzin}</div>
+          <div className="text-2xl font-bold text-muted-foreground">
+            {totalAbsen?.totalIzin}
+          </div>
           <p className="text-xs text-muted-foreground">
             Baiklah, kabar izin telah diterima
           </p>
@@ -73,7 +81,9 @@ const DataTotalAbsenKehadiran = () => {
           <Users color="#ef4444" className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent className="space-y-1.5">
-          <div className="text-2xl font-bold">{totalAbsen?.totalAlpha}</div>
+          <div className="text-2xl font-bold text-[#ef4444]">
+            {totalAbsen?.totalAlpha}
+          </div>
           <p className="text-xs text-muted-foreground">
             Kalian sebenarnya niat masuk sekolah tidak?
           </p>

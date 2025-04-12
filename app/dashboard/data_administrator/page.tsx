@@ -26,11 +26,11 @@ const AdministratorPage = async ({
 
   return (
     <PageContainer scrollable>
+      <DataTotalAbsenKehadiran />
       <div className="flex items-start justify-between gap-6 mb-6">
         <TableSearch />
         <TableKelasFilter dataKelas={data} nama_kelas={nama_kelas} />
       </div>
-      <DataTotalAbsenKehadiran />
       <div key={query + currentPage}>
         <AbsensiTable
           query={query}
