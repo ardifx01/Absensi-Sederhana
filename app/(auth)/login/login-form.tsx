@@ -46,10 +46,10 @@ export default function Login() {
         onRequest: () => {
           setPendingCredentials(true);
         },
-        onSuccess: async () => {
+        onSuccess: () => {
           router.push("/dashboard/data_administrator");
           toast.success("Berhasil masuk", {
-            description: "Anda akan dipindahkan ke halaman utama",
+            description: "Anda akan dipindahkan ke halaman dashboard",
           });
         },
         onError: (ctx: ErrorContext) => {
