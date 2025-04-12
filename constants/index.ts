@@ -34,9 +34,16 @@ export const navItems: NavItem[] = [
         items: []
     },
     {
+        title: 'Data Administrator',
+        url: '/dashboard/data_administrator',
+        icon: 'notepad',
+        isActive: false,
+        items: []
+    },
+    {
         title: 'Data Absensi',
         url: '/dashboard/data_absensi',
-        icon: 'dashboard',
+        icon: 'absen',
         isActive: false,
         items: []
     },
