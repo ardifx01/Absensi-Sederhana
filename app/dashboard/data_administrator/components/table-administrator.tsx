@@ -12,7 +12,6 @@ import {
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { CheckIcon, LoaderCircleIcon, X } from "lucide-react";
 
-
 import { useSiswaTable } from "@/hooks/useSiswa";
 import TableSkeletonv2 from "@/components/table/table-skeleton-v2";
 import { Badge } from "@/components/ui/badge";
@@ -33,7 +32,7 @@ const AbsensiTable = ({
   );
 
   return (
-    <div className="flex rounded-md border">
+    <div className="flex rounded-md border mt-12">
       <ScrollArea type="always" className="w-1 flex-1">
         <div className="flex gap-2 pb-4 whitespace-nowrap">
           <Table>
@@ -90,8 +89,20 @@ const AbsensiTable = ({
                         )}
                       </TableCell>
                       <TableCell>
-                        <Badge variant="outline">
-                          {item.kehadiran?.kehadiran}
+                        <Badge
+                          variant={
+                            item.kehadiran?.kehadiran as
+                              | "hadir"
+                              | "terlambat"
+                              | "sakit"
+                              | "izin"
+                              | "alpha"
+                          }
+                        >
+                          {item.kehadiran?.kehadiran
+                            ? item.kehadiran.kehadiran.charAt(0).toUpperCase() +
+                              item.kehadiran.kehadiran.slice(1)
+                            : ""}
                         </Badge>
                       </TableCell>
                     </TableRow>

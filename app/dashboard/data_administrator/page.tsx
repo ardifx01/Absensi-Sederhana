@@ -8,19 +8,22 @@ import AbsensiTable from "./components/table-administrator";
 import TableKelasFilter from "@/components/table/table-kelas-filter";
 import DataTotalAbsenKehadiran from "./components/data-total-absen-kehadiran";
 
-
 const AdministratorPage = async ({
-    searchParams
+  searchParams,
 }: {
-    searchParams?: Promise<{query?: string; page?: string; nama_kelas?: undefined;}>;
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+    nama_kelas?: undefined;
+  }>;
 }) => {
-    const query = (await searchParams)?.query || "";
-    const nama_kelas = (await searchParams)?.nama_kelas || undefined;
-    const currentPage = Number((await searchParams)?.page) || 1;
+  const query = (await searchParams)?.query || "";
+  const nama_kelas = (await searchParams)?.nama_kelas || undefined;
+  const currentPage = Number((await searchParams)?.page) || 1;
 
-    const totalPages = await getSiswaPages(query, nama_kelas);
-    const {data} = await getKelass()
-    
+  const totalPages = await getSiswaPages(query, nama_kelas);
+  const { data } = await getKelass();
+
   return (
     <PageContainer scrollable>
       <div className="flex items-start justify-between gap-6 mb-6">
