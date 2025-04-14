@@ -4,6 +4,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import NextTopLoader from "nextjs-toploader";
 
 const rubik = Rubik({
   variable: "--font-roboto",
@@ -22,9 +23,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${rubik.variable} antialiased`}
-      >
+      <body className={`${rubik.variable} antialiased`}>
+        <NextTopLoader showSpinner={false} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
