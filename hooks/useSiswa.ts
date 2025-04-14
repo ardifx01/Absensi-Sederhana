@@ -49,8 +49,26 @@ export function useSiswaTable(query: string, currentPage: number, nama_kelas: un
             siswas: response.data,
             error: response.error
         }),
-        staleTime: Infinity,
-        refetchOnWindowFocus: false
+        staleTime: 2 * 60 * 1000
+    });
+
+    return {
+        siswas: siswasQuery.data?.siswas,
+        isLoading: siswasQuery.isLoading,
+        isFetching: siswasQuery.isFetching,
+        error: siswasQuery.error || siswasQuery.data?.error,
+    }
+}
+
+export function useSiswaForAbsen(query: string, currentPage: number, nama_kelas: undefined) {
+    const siswasQuery = useQuery({
+        queryKey: ["siswas", query, currentPage, nama_kelas],
+        queryFn: () => getSiswaTables(query, currentPage, nama_kelas),
+        select: (response) => ({
+            siswas: response.data,
+            error: response.error
+        }),
+        staleTime: Infinity
     });
 
     return {

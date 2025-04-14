@@ -13,7 +13,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { LoaderCircleIcon } from "lucide-react";
 
 
-import { useSiswaTable } from "@/hooks/useSiswa";
+import { useSiswaForAbsen } from "@/hooks/useSiswa";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useKehadirans } from "@/hooks/useKehadiran";
@@ -29,7 +29,7 @@ const AbsensiTable = ({
   currentPage: number;
   nama_kelas: undefined;
 }) => {
-  const { siswas, isLoading, isFetching, error } = useSiswaTable(
+  const { siswas, isLoading, isFetching, error } = useSiswaForAbsen(
     query,
     currentPage,
     nama_kelas
