@@ -14,6 +14,7 @@ const LogoutButton = () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
+          router.refresh();
           router.push("/login");
           toast.success("Berhasil keluar", {
             description: "Selamat tinggal, nanti datang lagi ya",
