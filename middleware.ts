@@ -35,7 +35,11 @@ export default async function authMiddleware(request: NextRequest) {
             return NextResponse.redirect(new URL("/", request.url));
         }
     }
-
+    
+    if (isAuthRoute) {
+        return NextResponse.redirect(new URL("/", request.url));
+    }
+    
     return NextResponse.next();
 }
 
