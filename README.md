@@ -175,43 +175,43 @@ model Kehadiran {
 git clone https://github.com/IRTIDEATH/Absensi-Sederhana.git
 ```
 
-1. Buka text editor anda dan kita akan install package, buka terminal, lalu jalankan
+2. Buka text editor anda dan kita akan install package, buka terminal, lalu jalankan
 
 ```markdown
 npm install
 ```
 
-1. Jika sudah selesai menginstall, kita akan melakukan migrasi database ke local
-2. Buka file .env.example, rename file menjadi .env
-3. Masukkan database url anda
+3. Jika sudah selesai menginstall, kita akan melakukan migrasi database ke local
+4. Buka file .env.example, rename file menjadi .env
+5. Masukkan database url anda
 
 ```markdown
 DATABASE_URL="postgresql://postgres:[YOUR_PASSWORD]@localhost:[YOUR_PORT]/[YOUR_DB_NAME]?schema=public"
 ```
 
-1. Buka terminal lalu jalankan
+6. Buka terminal lalu jalankan
 
 ```markdown
 npx prisma migrate dev
 ```
 
-1. Projek sudah siap dijalankan dan dikembangkan
-2. dev
+7. Projek sudah siap dijalankan dan dikembangkan
+8. dev
 
 ```markdown
 npm run dev
 ```
 
-1. build
+9. build
 
 ```markdown
 npm run build
 ```
 
-1. preview
+10. preview
 
 ```markdown
 npm run start
 ```
 
-### Sekian dan Terima Kasih
+##### Sekian dan Terima Kasih

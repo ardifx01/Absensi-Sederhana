@@ -23,7 +23,7 @@ export default function LoginPage() {
         <div className="flex justify-center gap-2 md:justify-start">
           <a href="#" className="flex items-center gap-2 font-medium">
             <div className="text-primary text-sm">
-              2025. SMKN 46 Jakarta
+              2025. SMKN Jakarta
             </div>
           </a>
         </div>
