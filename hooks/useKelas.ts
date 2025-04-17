@@ -1,10 +1,9 @@
 "use client"
 
 import { getKelass } from "@/actions/kelas";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export function useKelass() {
-    // const queryClient = useQueryClient();
 
     const kelassQuery = useQuery({
         queryKey: ["kelass"],

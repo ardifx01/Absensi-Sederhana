@@ -6,6 +6,7 @@ import TablePagination from "@/components/table/table-pagination";
 import { getKelass } from "@/actions/kelas";
 import AbsensiTable from "./components/table-absensi";
 import TableKelasFilter from "@/components/table/table-kelas-filter";
+import UpdateTglBtn from "./components/update-tgl-button";
 
 const AbsensiPage = async ({
     searchParams
@@ -24,6 +25,7 @@ const AbsensiPage = async ({
       <div className="flex items-start justify-between gap-6 mb-6">
         <TableSearch />
         <TableKelasFilter dataKelas={data} nama_kelas={nama_kelas} />
+        <UpdateTglBtn />
       </div>
       <div key={query + currentPage}>
         <AbsensiTable
