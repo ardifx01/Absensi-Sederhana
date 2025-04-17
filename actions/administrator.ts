@@ -2,7 +2,6 @@
 
 import prisma from "@/lib/prisma"
 import { QueriesResponse } from "@/lib/response/administrator"
-import { KehadiranEnum } from "@prisma/client"
 
 
 export async function getTotalAbsenKehadiran(): Promise<QueriesResponse | undefined> {
@@ -70,5 +69,17 @@ export async function getTotalAbsenKehadiran(): Promise<QueriesResponse | undefi
         }
     } catch (error) {
         console.error('Error fetching total absen:', error)
+    }
+}
+
+export async function UpdateTanggal() {
+    try {
+        await prisma.kehadiran.updateMany({
+            data: {tanggal: new Date()}
+        })
+        
+        return { success: true }
+    } catch (error) {
+        console.error('Error update tanggal:', error)
     }
 }
