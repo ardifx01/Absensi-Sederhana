@@ -1,36 +1,217 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dokumentasi LSP Aplikasi Absensi
 
-## Getting Started
+## Memperkenalkan Hadirin, dibuat oleh Al Sakha
 
-First, run the development server:
+### Aplikasi absensi sederhana untuk sekolah
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Halaman Utama
+
+User pertama kali datang ke website akan di tampilkan halaman utama.
+
+![image.png](/public/image.png)
+
+### Halaman Login
+
+User harus login terlebih dahulu sebelum masuk ke halaman dashboard
+
+![image.png](/public/image%201.png)
+
+### Halaman Data Administrator
+
+User bisa melihat tampilan semua total siswa yang hadir, terlambat, sakit, izin, dan alpha di hari ini/sekarang (Today).
+
+Informasi: Data di ditampilkan berdasarkan hari ini/sekarang. Jika sudah berganti hari ke esok hari, data akan di reset menjadi 0.
+
+![image.png](/public/image%202.png)
+
+### Halaman Data Absensi
+
+User bisa mengabsen siswa satu per satu secara realtime (Update tanggal dan status kehadiran langsung di hari ini) hanya dengan menekan salah satu tombol.
+
+Tips: Jangan lupa untuk menekan tombol Update Tanggal tiap berganti hari dan sebelum absen para siswa satu per satu.
+
+![image.png](/public/image%203.png)
+
+### Halaman Data Siswa
+
+User bisa menambahkan data siswa, mengubah data siswa, dan menghapus data siswa.
+
+![image.png](/public/image%204.png)
+
+## Flowchart
+
+Maaf flowchart kurang niat 😅 (gk kek gini harusnya)
+
+![image.png](/public/image%205.png)
+
+## Tech Stack
+
+- Typescript
+- Next js
+- Tanstack React Query
+- Tailwindcss
+- Shadcn UI
+- Postgresql
+- Prisma
+
+## Tools
+
+- VsCodium (Text Editor)
+- Excalidraw (Gambar Flowchart)
+- Supabase (Gambar ERD)
+- Prisma studio (Table editor)
+- Markdown (Format file dokumentasi)
+- Notion (Aplikasi pencatat untuk membuat dokumentasi)
+
+## Fitur
+
+- Autentikasi (Login & Logout)
+- Dashboard Analitik keseluruhan secara real time untuk halaman data administrator
+- Create, Read, Update, Delete untuk halaman data siswa
+- Tombol klik absensi siswa secara real time
+- Pencarian data berdasarkan nama siswa
+- Tombol Filter berdasarkan kelas
+- Pagination
+- Tema gelap dan terang
+- Sudah responsive di berbagai device
+
+## Visual Relasi Antar Table
+
+![image.png](/public/image%206.png)
+
+## Schema Prisma Model
+
+```scheme
+model User {
+  id        String    @id @default(cuid()) @map("_id")
+  name      String
+  email     String    @unique
+  image     String?
+  role      String    @default("user")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  sessions  Session[]
+  accounts  Account[]
+}
+
+model Session {
+  id        String   @id @default(cuid()) @map("_id")
+  userId    String
+  token     String
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id                    String    @id @default(cuid()) @map("_id")
+  userId                String
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum GenderEnum {
+  laki_laki
+  perempuan
+}
+
+model Siswa {
+  id_siswa  Int        @id @default(autoincrement())
+  nis       Int
+  nama      String
+  kelasId   Int
+  gender    GenderEnum
+  kehadiran Kehadiran?
+
+  kelas Kelas @relation(fields: [kelasId], references: [id_kelas])
+
+  created_at DateTime @default(now())
+}
+
+model Kelas {
+  id_kelas   Int     @id @default(autoincrement())
+  nama_kelas String
+  Siswa      Siswa[]
+}
+
+enum KehadiranEnum {
+  hadir
+  terlambat
+  sakit
+  izin
+  alpha
+}
+
+model Kehadiran {
+  id_kehadiran Int           @id @default(autoincrement())
+  tanggal      DateTime      @default(now())
+  kehadiran    KehadiranEnum @default(hadir)
+  siswaId      Int           @unique
+  Siswa        Siswa         @relation(fields: [siswaId], references: [id_siswa], onDelete: Cascade)
+
+  created_at DateTime @default(now())
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Memulai projek
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Git clone repo ini atau download zip
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```markdown
+git clone https://github.com/IRTIDEATH/Absensi-Sederhana.git
+```
 
-## Learn More
+1. Buka text editor anda dan kita akan install package, buka terminal, lalu jalankan
 
-To learn more about Next.js, take a look at the following resources:
+```markdown
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Jika sudah selesai menginstall, kita akan melakukan migrasi database ke local
+2. Buka file .env.example, rename file menjadi .env
+3. Masukkan database url anda
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```markdown
+DATABASE_URL="postgresql://postgres:[YOUR_PASSWORD]@localhost:[YOUR_PORT]/[YOUR_DB_NAME]?schema=public"
+```
 
-## Deploy on Vercel
+1. Buka terminal lalu jalankan
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```markdown
+npx prisma migrate dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Projek sudah siap dijalankan dan dikembangkan
+2. dev
+
+```markdown
+npm run dev
+```
+
+1. build
+
+```markdown
+npm run build
+```
+
+1. preview
+
+```markdown
+npm run start
+```
+
+### Sekian dan Terima Kasih
