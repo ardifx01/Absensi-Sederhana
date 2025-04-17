@@ -47,11 +47,11 @@ export default function Login() {
           setPendingCredentials(true);
         },
         onSuccess: () => {
-          router.refresh();
           router.push("/dashboard/data_administrator");
           toast.success("Berhasil masuk", {
             description: "Anda akan dipindahkan ke halaman dashboard",
           });
+          router.refresh();
         },
         onError: (ctx: ErrorContext) => {
           console.log(ctx);

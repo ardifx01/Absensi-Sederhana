@@ -14,11 +14,11 @@ const LogoutButton = () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          router.refresh();
-          router.push("/login");
+          router.push("/");
           toast.success("Berhasil keluar", {
             description: "Selamat tinggal, nanti datang lagi ya",
           });
+          router.refresh();
         },
       },
     });
