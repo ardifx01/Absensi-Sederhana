@@ -6,34 +6,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useKehadirans() {
     const queryClient = useQueryClient();
-    //     mutationFn: ({ id_siswa, kehadiranValue }: { id_siswa: number; kehadiranValue: Partial<"hadir" | "terlambat" | "sakit" | "izin" | "alpha"> }) =>
-    //         updateAbsensiSiswa(id_siswa, kehadiranValue),
-    //     // onSuccess: () => {
-    //     //     queryClient.invalidateQueries({ queryKey: ["kehadirans"] });
-    //     // },
-    //     onMutate: async (variables) => {
-    //         // 1. Cancel ongoing queries untuk hindari race condition
-    //         await queryClient.cancelQueries({ queryKey: ["kehadirans"] });
-            
-    //         // 2. Simpan snapshot data sebelumnya untuk rollback
-    //         const previousKehadiran = queryClient.getQueryData(["kehadirans"]);
-            
-    //         // 3. Optimistically update cache
-    //         queryClient.setQueryData(["kehadirans"], (old: SiswaProps[]) => [...old, variables])
-            
-    //         return { previousKehadiran };
-    //     },
-        
-    //     // Rollback jika error
-    //     onError: (err, variables, context) => {
-    //         queryClient.setQueryData(["kehadirans"], context?.previousKehadiran);
-    //     },
-        
-    //     // Invalidasi query setelah selesai (sukses/gagal)
-    //     onSettled: () => {
-    //         queryClient.invalidateQueries({ queryKey: ["kehadirans"] });
-    //     }
-    // });
 
     const updateAbsensiMutation = useMutation({
         mutationFn: ({ id_siswa, kehadiranValue }: { id_siswa: number; kehadiranValue: "hadir" | "terlambat" | "sakit" | "izin" | "alpha" }) =>
@@ -65,14 +37,9 @@ export function useKehadirans() {
 
         onSettled: () => {
             queryClient.invalidateQueries({ queryKey: ["siswas"] });
+            queryClient.invalidateQueries({ queryKey: ["total_absen"] });
         }
     });
-    //     mutationFn: ({ id_siswa, kehadiranValue }: { id_siswa: number; kehadiranValue: Partial<"hadir" | "terlambat" | "sakit" | "izin" | "alpha"> }) =>
-    //         updateAbsensiSiswa(id_siswa, kehadiranValue),
-    //     onSuccess: () => {
-    //         queryClient.invalidateQueries({ queryKey: ["kehadirans"] });
-    //     },
-    // });
     return {
         // Mutations
         updateAbsensi: updateAbsensiMutation.mutate,
