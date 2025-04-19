@@ -15,6 +15,7 @@ User pertama kali datang ke website akan di tampilkan halaman utama.
 User harus login terlebih dahulu sebelum masuk ke halaman dashboard
 
 ![image.png](/public/image%201.png)
+Sumber Gambar: [@setsulena](https://x.com/setsulena/status/1907325122895294633)
 
 ### Halaman Data Administrator
 
