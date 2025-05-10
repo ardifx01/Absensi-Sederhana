@@ -23,15 +23,24 @@ const SiswaPage = async ({
     
   return (
     <PageContainer scrollable>
-      <div className="flex items-start justify-between gap-6 mb-6">
+      <div className="flex flex-col sm:flex-row items-start justify-between gap-6 mb-6">
         <TableSearch />
-        <TableKelasFilter dataKelas={data} nama_kelas={nama_kelas}/>
-        <Link href="/dashboard/data_siswa/tambah" className={cn(buttonVariants({ variant: "default" }))}>
-          Tambah
-        </Link>
+        <div className="flex items-center justify-between w-full">
+          <TableKelasFilter dataKelas={data} nama_kelas={nama_kelas} />
+          <Link
+            href="/dashboard/data_siswa/tambah"
+            className={cn(buttonVariants({ variant: "default" }), 'h-8')}
+          >
+            Tambah
+          </Link>
+        </div>
       </div>
       <div key={query + currentPage}>
-        <SiswaTable query={query} currentPage={currentPage} nama_kelas={nama_kelas} />
+        <SiswaTable
+          query={query}
+          currentPage={currentPage}
+          nama_kelas={nama_kelas}
+        />
       </div>
       <TablePagination totalPages={totalPages} />
     </PageContainer>

@@ -22,10 +22,12 @@ const AbsensiPage = async ({
     
   return (
     <PageContainer scrollable>
-      <div className="flex items-start justify-between gap-6 mb-6">
+      <div className="flex flex-col sm:flex-row items-start justify-between gap-6 mb-6">
         <TableSearch />
-        <TableKelasFilter dataKelas={data} nama_kelas={nama_kelas} />
-        <UpdateTglBtn />
+        <div className="flex items-center justify-between w-full">
+          <TableKelasFilter dataKelas={data} nama_kelas={nama_kelas} />
+          <UpdateTglBtn />
+        </div>
       </div>
       <div key={query + currentPage}>
         <AbsensiTable
