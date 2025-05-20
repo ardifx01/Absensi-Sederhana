@@ -22,15 +22,13 @@ export default function LoginPage() {
         </div>
         <div className="flex justify-center gap-2 md:justify-start">
           <a href="#" className="flex items-center gap-2 font-medium">
-            <div className="text-primary text-sm">
-              2025. SMKN Jakarta
-            </div>
+            <div className="text-primary text-sm">2025. SMKN Jakarta</div>
           </a>
         </div>
       </div>
       <div className="relative hidden bg-muted lg:block">
         <Image
-          src="/vestiazetaponytailready.webp"
+          src="/vestiazetaponytail.png"
           alt="Image"
           width={500}
           height={500}
